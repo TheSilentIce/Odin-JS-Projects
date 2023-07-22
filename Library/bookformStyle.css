@@ -1,0 +1,38 @@
+:root {
+    --container-column-size:12rem;
+    --container-row-size:6rem
+}
+
+body,html {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: var(--container-column-size) 1fr var(--container-column-size)  ;
+    grid-template-rows: var(--container-row-size)   1fr var(--container-row-size)  ;
+    align-items: center;
+    justify-content: center;
+    background-image: url("assets/A3B4vzAw6BQ8x5fYVqQJ--1--cl9ti.jpg");
+    background-size: cover;
+}
+
+/* Form Area */
+.form-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    background-color: black;
+    grid-column: 2;
+    grid-row: 2;
+    opacity: 0.5;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
+}
+
+label {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}

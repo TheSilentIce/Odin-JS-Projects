@@ -1,0 +1,38 @@
+:root {
+    --column-size:1;
+    --row-size:1;
+}
+
+body,html {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    height: 100%;
+    background-color: lightpink;
+    grid-template-columns: 8rem 1fr;
+}
+
+
+/* Sidebar */
+.sidebar {
+    display: grid;
+    grid-column: span 1;
+    background-color: lightblue;
+}
+
+#add {
+    width: 2rem;
+    height: 2rem;
+}
+
+
+
+/* Book Container */
+.book-container {
+    display: grid;
+    grid-column: 2;
+    background-color: lightgreen;
+}
