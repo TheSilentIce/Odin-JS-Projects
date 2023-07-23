@@ -7,8 +7,10 @@ if (sessionStorage.getItem("firstStart") == "true") {
   library = JSON.parse(library);
   library.forEach(element => {
     const x = JSON.parse(element);
-    console.log(x["author"]);
+    console.log(x["numberOfPages"]);
   });
+
+  createGrid(library);
 
   let addButton = document.getElementById("add");
   addButton.removeEventListener("click",null);
@@ -29,21 +31,32 @@ if (sessionStorage.getItem("firstStart") == "true") {
 }
 
 
-
-
-let checkButton = document.getElementById("check");
-checkButton.addEventListener("click", () => {
-  console.log(firstStart);
-  let x = sessionStorage.getItem("datakey");
-  x = JSON.parse(x);
-  console.log(typeof library);
-  console.log("testing: " + x.author);
-  
-  library.push(x);
-  console.log("Length: " + library.length);
-  
+function createGrid(library) {
+  let container = document.getElementById("bookContainer");
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+}
+  container.classList.add("book-container");
   library.forEach(element => {
-    console.log("AUTHOR: " + element.author);    
-  });
+    const y = JSON.parse(element);
+    console.log(y["numberOfPages"])
 
-})
+    let book = document.createElement("div");
+    book.classList.add("book");
+
+    let title = document.createElement("div");
+    title.textContent = y["title"];
+    
+    let author = document.createElement("div");
+    author.textContent = y["author"];
+
+    let pages = document.createElement("div");
+    pages.textContent = y["numberOfPages"];
+
+    book.appendChild(title);
+    book.appendChild(author);
+    book.append(pages);
+
+    container.append(book);
+  });
+}

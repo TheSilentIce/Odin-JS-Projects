@@ -1,6 +1,6 @@
 :root {
-    --column-size:1;
-    --row-size:1;
+    --column-position:1;
+    --row-position:1;
 }
 
 body,html {
@@ -35,4 +35,20 @@ body,html {
     display: grid;
     grid-column: 2;
     background-color: lightgreen;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+
+.book {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 2rem;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
 }

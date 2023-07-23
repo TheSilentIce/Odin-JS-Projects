@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM LOADED")
-    let library = sessionStorage.getItem("library");
-    library = JSON.parse(library);
-    console.log(library)
     document.getElementById("book-form").addEventListener("submit", function(event) {
         let title = document.getElementById("Title").value;
         let author = document.getElementById("Author").value;
-        let pages = document.getElementById("pages").value;
-        let book = new Book(title,author,pages,false);
+        let numberOfPages = document.getElementById("pages").value;
+        let book = new Book(title,author,numberOfPages,false);
         book = JSON.stringify(book);
 
         try {
@@ -19,9 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("BRUH");
         }
         
-
         window.location.href = "index.html";
-        event.preventDefault(); // This prevents the form from submitting through the default method
+        event.preventDefault();
     });
   });
 
