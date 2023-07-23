@@ -37,12 +37,13 @@ body,html {
     background-color: lightgreen;
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(5,1fr);
+    gap: 10px;
 }
 
 .book {
     display: grid;
-    grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column: var(--column-position);
+    grid-row: var(--row-position);
     height: 100%;
     width: 100%;
     background-color: red;
@@ -51,4 +52,22 @@ body,html {
     color: white;
     font-size: 10px;
     font-weight: bold;
+}
+
+.title-card {
+    justify-self: center;
+    grid-column: 1 / span 2;
+    grid-row: 1;
+}
+
+.author-card {
+    justify-self: center;
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.pages-card {
+    justify-self: center;
+    grid-column: 1 / span 2;
+    grid-row: 3;
 }
