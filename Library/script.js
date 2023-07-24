@@ -1,7 +1,6 @@
 let firstStart = "false";
 const computedRoot = getComputedStyle(document.documentElement);
 
-
 if (sessionStorage.getItem("firstStart") == "true") {
   let library = sessionStorage.getItem("library");
   library = JSON.parse(library);
@@ -9,8 +8,6 @@ if (sessionStorage.getItem("firstStart") == "true") {
     const x = JSON.parse(element);
     console.log(x["numberOfPages"]);
   });
-
-  console.log("LENGTH: " + library.length)
 
   createGrid(library);
 
@@ -40,71 +37,70 @@ function createGrid(library) {
     container.removeChild(container.firstChild);
   }
   container.classList.add("book-container");
+  let row = 1;
+  let column = 1;
+  let deleteIndex = 0;
 
-  let libraryLength = library.length;
-  libraryLength = Math.ceil(libraryLength / 5);
-  let position = 1;
-
-  if (libraryLength > 0) {
-    for (let i = 0; i < library.length;i++) {
-      console.log("LOOP EXECUTED")
-      const element = JSON.parse(library[i]);
-
-      //LOOP FIX, libraryLength is set at 1, change that!
-
-      let book = document.createElement("div");
-      book.style.setProperty("--column-position", position);
-      position++;
-      book.classList.add("book");
-
-      let title = document.createElement("div");
-      title.textContent = element["title"];
-      title.classList.add("title-card");
-      
-      let author = document.createElement("div");
-      author.textContent = element["author"];
-      author.classList.add("author-card");
-
-      let pages = document.createElement("div");
-      pages.textContent = element["numberOfPages"];
-      pages.classList.add("pages-card");
-
-      book.appendChild(title);
-      book.appendChild(author);
-      book.append(pages);
-
-      container.append(book);
-      console.log("APPENDED: " + element["title"]);
+  library.forEach(element => {
+    console.log("STARTING DELETEINDEX: " +deleteIndex);
+    const item = JSON.parse(element);
+    if (column == 6) {
+      column = 1;
+      row++;
     }
-  }
-}
+    // console.log("NEW ELEMENT: " + item);
 
+    let book = document.createElement("div");
+    book.style.setProperty("--column-position",column)
+    book.style.setProperty("--row-position",row);
+    book.classList.add("book");
 
-
-
-
-  // library.forEach(element => {
-  //   const y = JSON.parse(element);
-  //   console.log(y["numberOfPages"])
-
-  //   let book = document.createElement("div");
-  //   book.classList.add("book");
-
-  //   let title = document.createElement("div");
-  //   title.textContent = y["title"];
-  //   title.classList.add("title-card");
+    let title = document.createElement("div");
+    title.textContent = item["title"];
+    title.classList.add("title-card");
     
-  //   let author = document.createElement("div");
-  //   author.textContent = y["author"];
-  //   author.classList.add("author-card");
+    let author = document.createElement("div");
+    author.textContent = item["author"];
+    author.classList.add("author-card");
 
-  //   let pages = document.createElement("div");
-  //   pages.textContent = y["numberOfPages"];
-  //   pages.classList.add("pages-card");
+    let pages = document.createElement("div");
+    pages.textContent = item["numberOfPages"];
+    pages.classList.add("pages-card");
 
-  //   book.appendChild(title);
-  //   book.appendChild(author);
-  //   book.append(pages);
+    let pictures = document.createElement("div");
+    pictures.classList.add("pictures-card")
 
-  //   container.append(book);
-  // });
+    let x_button = document.createElement("button");
+    x_button.classList.add("x-button");
+    const something = document.createElement("div");
+    something.value = deleteIndex;
+    x_button.append(something);
+
+
+    x_button.addEventListener("click",() => {
+    console.log(Number(x_button.firstChild.value));
+    console.log(typeof Number(x_button.firstChild.value));
+    library.splice(Number(x_button.firstChild.value),1);
+
+    console.log("LISTENER TIME");
+    library.forEach(element => {
+      console.log(element);
+    })
+
+      createGrid(library);
+     });
+
+    deleteIndex++;
+    pictures.append(x_button);
+
+    book.appendChild(title);
+    book.appendChild(author);
+    book.append(pages);
+    book.append(pictures);
+    column++;
+
+    container.append(book);
+    console.log("APPENDED: " + item["title"]);
+
+  })  
+}

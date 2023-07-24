@@ -71,3 +71,28 @@ body,html {
     grid-column: 1 / span 2;
     grid-row: 3;
 }
+
+.pictures-card {
+    display: grid;
+    grid-column: 2;
+    grid-row: 4;
+    background-color: beige;
+    grid-template-columns: 1fr 1fr;
+}
+
+.x-button {
+    background-image: url("assets/red-x-on-network-icon.png");
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.check-button {
+    background-image: url(assets/check-circle.svg);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+
